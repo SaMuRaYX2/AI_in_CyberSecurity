@@ -1,0 +1,57 @@
+[System]
+Name='mamdanitype2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Temperature'
+Range=[0 40]
+NumMFs=5
+MF1='VeryCold':'trapmf',[0 0 0.5 4.5]
+MF2='Cold':'trimf',[8 14 20]
+MF3='Normal':'trimf',[18 22 26]
+MF4='Warm':'trimf',[24 30 35]
+MF5='VeryWarm':'trapmf',[32 36 40 40]
+
+[Input2]
+Name='TempSpeed'
+Range=[-5 5]
+NumMFs=3
+MF1='Negative':'trapmf',[-5 -5 -2 0]
+MF2='Zero':'trimf',[-1 0 1]
+MF3='Positive':'trapmf',[0 2 5 5]
+
+[Output1]
+Name='ConditionerControl'
+Range=[-90 90]
+NumMFs=5
+MF1='BigCold':'trapmf',[-90 -90 -60 -30]
+MF2='SmallCold':'trimf',[-40 -20 0]
+MF3='Off':'trimf',[-5 0 5]
+MF4='SmallHeat':'trimf',[0 20 40]
+MF5='BigHeat':'trapmf',[30 60 90 90]
+
+[Rules]
+5 3, 1 (1) : 1
+5 1, 2 (1) : 1
+4 3, 1 (1) : 1
+4 1, 3 (1) : 1
+1 1, 5 (1) : 1
+1 3, 4 (1) : 1
+2 1, 5 (1) : 1
+2 3, 3 (1) : 1
+5 2, 1 (1) : 1
+4 2, 2 (1) : 1
+1 2, 5 (1) : 1
+2 2, 4 (1) : 1
+3 3, 2 (1) : 1
+3 1, 4 (1) : 1
+3 2, 3 (1) : 1
